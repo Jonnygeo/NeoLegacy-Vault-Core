@@ -1,168 +1,20 @@
-// File: LICENSE
-MIT License
+© 2025 NeoShade AI. Created by Jonathan G. (aka JokerJonny)
 
-Copyright (c) 2025 JokerJonny
+This module is part of the NeoLegacy AI ecosystem.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
+You may:
+- Use or adapt this code for **non-commercial** use
+- Integrate with internal AI/legacy apps with attribution
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You may NOT:
+- Rebrand, resell, or use for commercial SaaS
+- Remove references to NeoLegacy or NeoShade AI
 
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+This vault module powers encrypted memory preservation, spiritual confessions,  
+voice legacy delivery, and blockchain-proof of life systems.
 
-
-// File: .gitignore
-node_modules/
-build/
-dist/
-.firebase/
-.firebaserc
-firebase-debug.log
-.env
-.env.local
-.env.development.local
-.env.production.local
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-coverage/
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-
-// File: src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-import Upload from './components/Upload';
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
-
-// File: src/pages/Login.js
-import React, { useState } from 'react';
-import { auth } from '../services/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/dashboard');
-    } catch (error) {
-      alert('Login failed: ' + error.message);
-    }
-  };
-
-  return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
-}
-
-export default Login;
-
-// File: src/pages/Dashboard.js
-import React from 'react';
-import Upload from '../components/Upload';
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>NeoLegacy Vault</h2>
-      <Upload />
-    </div>
-  );
-}
-
-export default Dashboard;
-
-// File: src/components/Upload.js
-import React, { useState } from 'react';
-import { WebBundlr } from '@bundlr-network/client';
-
-function Upload() {
-  const [file, setFile] = useState(null);
-  const [status, setStatus] = useState('');
-
-  const handleUpload = async () => {
-    if (!file) return;
-
-    setStatus('Connecting...');
-    const bundlr = new WebBundlr('https://node1.bundlr.network', 'solana', window.solana);
-    await bundlr.ready();
-
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const buffer = Buffer.from(reader.result);
-      const price = await bundlr.getPrice(buffer.length);
-      await bundlr.fund(price);
-      const tx = await bundlr.upload(buffer);
-      setStatus(`Uploaded to Arweave: https://arweave.net/${tx.data.id}`);
-    };
-    reader.readAsArrayBuffer(file);
-  };
-
-  return (
-    <div>
-      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-      <button onClick={handleUpload}>Upload to Arweave</button>
-      <p>{status}</p>
-    </div>
-  );
-}
-
-export default Upload;
-
-// File: src/services/firebase.js
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-
-const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID'
-};
+To license or collaborate:  
+→ https://neo-shade
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
