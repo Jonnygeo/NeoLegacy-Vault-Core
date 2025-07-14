@@ -1,27 +1,34 @@
 # NeoLegacy Vault Core
 
-**NeoLegacy Vault Core** is the foundational codebase for a decentralized digital legacy platform. It enables permanent, secure storage of personal and family assets—such as wills, voice messages, memory logs, and real-world asset proofs—powered by Firebase, Arweave, and SOVN token logic.
+![Vault Banner](https://neo-shade.com/wp-content/uploads/2025/07/NeoLegacyBanner.jpg)
+
+**NeoLegacy Vault Core** is the foundational module for a decentralized legacy preservation system. It enables permanent, secure storage of personal and family memories, wills, voice messages, asset proofs, and confessions — powered by Firebase, Arweave, and SOVN token authentication.
+
+---
 
 ## 🔐 Core Features
 
-- Firebase Authentication (Email + Password)
-- Phantom Wallet Integration (Solana)
-- File upload and permanent storage via Arweave (Bundlr)
-- SOVN utility-ready (token-gated uploads and access)
-- Dashboard UI for managing personal vault entries
-- Modular architecture for AI, RWA, and heir-trigger expansion
+- ✅ Firebase Authentication (Email + Password)
+- ✅ Phantom Wallet Integration (Solana)
+- ✅ Arweave storage via Bundlr (permanent storage)
+- ✅ SOVN Token-Gated Upload & Access
+- ✅ Modular Dashboard for vault management
+- 🛠 AES-256 Encryption Ready *(Coming Soon)*
+
+---
 
 ## 📦 Tech Stack
 
-- **Frontend:** React + React Router + Tailwind (optional)
-- **Storage:** Firebase Firestore + Arweave via Bundlr
-- **Authentication:** Firebase Auth
-- **Wallet/Token:** Solana Wallet Adapter (Phantom) + SPL Token (SOVN)
-- **Encryption Ready:** AES-256 (coming soon)
+| Layer | Tech |
+|-------|------|
+| Frontend | React + React Router + Tailwind (optional) |
+| Auth | Firebase Auth + Phantom Wallet (Solana) |
+| Storage | Firebase Firestore + Arweave (via Bundlr) |
+| Token Access | SPL Token (SOVN) |
+| Encryption | AES-256 (planned) |
 
-## 🚀 Getting Started
+---
 
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/NeoLegacy-Vault-Core.git
-   cd NeoLegacy-Vault-Core
+## 🧩 Integrated With
+
+| Module |
